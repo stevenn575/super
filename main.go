@@ -12,6 +12,9 @@ import (
 func main() {
 	log.Print("Running")
 
+	fs := http.FileServer(http.Dir("assets"))
+	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
+
 	// Make a webpage
 	http.HandleFunc("/", controllers.HomeIndex)
 	http.HandleFunc("/users", controllers.UsersIndex)

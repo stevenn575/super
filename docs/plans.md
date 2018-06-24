@@ -6,8 +6,7 @@ A team belongs to a league and has a rank that is unique within that league.
 Next possible steps:
 - Use persistent storage such as sqllite or something running in a docker image such as a NoSQL database
 - Acually mimic a real data structure of a person's team in a League
-- Create logger using go routine
-- Serve static files like Favicon
+- Create 404 page
 
 Goals:
 - Enjoy programming
@@ -22,6 +21,9 @@ Accomplishments:
 - Create static front-end with styling, etc.
 - Make MVC
 - Refactor load template
+- Create logger using go routine
+- Serve static files like Favicon
+
 
 Data model
 A user has many user teams
