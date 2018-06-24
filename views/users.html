@@ -1,0 +1,11 @@
+{{define "title"}}Users{{end}}
+
+{{define "content"}}
+
+<h1>Users</h1>
+<ul>
+    {{ range . }}
+        <li>This is {{ .Name }}</li>
+    {{ end }}
+</ul>
+{{ end }}
