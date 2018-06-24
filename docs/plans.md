@@ -6,7 +6,8 @@ A team belongs to a league and has a rank that is unique within that league.
 Next possible steps:
 - Use persistent storage such as sqllite or something running in a docker image such as a NoSQL database
 - Acually mimic a real data structure of a person's team in a League
--create logger using go routine
+- Create logger using go routine
+- Serve static files like Favicon
 
 Goals:
 - Enjoy programming
