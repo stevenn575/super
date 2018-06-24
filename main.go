@@ -1,9 +1,9 @@
 package main
 
 import (
-	"html/template"
 	"log"
 	"net/http"
+	"super/controllers"
 	"super/models"
 )
 
@@ -26,25 +26,9 @@ func main() {
 	log.Print("Running")
 
 	// Make a webpage
-	http.HandleFunc("/", handler)
+	http.HandleFunc("/", controllers.HomeIndex)
+	http.HandleFunc("/users", controllers.UsersIndex)
+
 	log.Fatal(http.ListenAndServe(":8080", nil))
 
-}
-
-func handler(w http.ResponseWriter, r *http.Request) {
-	u := models.GetUsers()
-
-	log.Print(u)
-
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	t, err := template.ParseFiles("views/layout.html", "views/users.html")
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
-	err2 := t.ExecuteTemplate(w, "layout", u)
-	if err2 != nil {
-		log.Fatal(err2)
-		return
-	}
 }
