@@ -1,4 +1,4 @@
 [
-    { "name" : "Mariners", "rank": 1},
-    { "name" : "Seahawks", "rank": 1 }
+    {"id":1, "name" : "Mariners", "rank": 1},
+    {"id":2, "name" : "Seahawks", "rank": 1 }
 ]

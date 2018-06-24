@@ -9,6 +9,7 @@ import (
 
 // Team is a sports team
 type Team struct {
+	ID   uint
 	Name string
 	// League League
 	Rank uint
@@ -36,4 +37,15 @@ func GetTeams() []Team {
 
 	json.Unmarshal(raw, &teams)
 	return teams
+}
+
+// GetTeam finds a Team by ID
+func GetTeam(id uint) (team Team, err error) {
+	teams := GetTeams()
+	for _, team := range teams {
+		if team.ID == id {
+			return team, nil
+		}
+	}
+	return team, fmt.Errorf("Could not find team")
 }

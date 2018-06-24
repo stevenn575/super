@@ -1,5 +1,8 @@
 Superfantasy
 
+Helpful for debuging in templates:
+{{ printf "%#v" . }}
+
 Data structure
 // UserLeague is a group of UserTeams
 type UserLeague struct {

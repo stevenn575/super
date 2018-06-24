@@ -2,11 +2,13 @@
     { 
         "id" : 1,
         "email": "stevenn575@gmail.com",
-        "name": "Steve" 
+        "name": "Steve",
+        "team_ids": [1,2]
     },
     { 
         "id" : 2,
         "email" : "rachel.e.hoaglin@gmail.com",
-        "name": "Rachel" 
+        "name": "Rachel",
+        "team_ids": [2] 
     }
 ]

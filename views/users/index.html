@@ -4,7 +4,7 @@
 <h1>Users</h1>
 <ul>
     {{ range . }}
-        <li>This is {{ .Name }}</li>
+        <li>This is {{ .Name }}. I have teams {{ range .Teams }} {{ .Name }}, {{ end }}</li>
     {{ end }}
 </ul>
 {{ end }}
