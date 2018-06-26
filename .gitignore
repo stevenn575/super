@@ -1,1 +1,4 @@
 .DS_Store
+logs/application.log
+docs/plans.md
+super

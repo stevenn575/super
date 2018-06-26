@@ -7,6 +7,7 @@ Next possible steps:
 - Use persistent storage such as sqllite or something running in a docker image such as a NoSQL database
 - Acually mimic a real data structure of a person's team in a League
 - Create 404 page
+- Anything from this book https://astaxie.gitbooks.io/build-web-application-with-golang/content/en/08.1.html
 
 Goals:
 - Enjoy programming
