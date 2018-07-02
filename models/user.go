@@ -79,13 +79,21 @@ func CreateUser(data url.Values) (User, error) {
 
 	db := system.GetDB()
 
-	statement := fmt.Sprintf("Insert into users(name, email) values('%v', '%v')", data.Get("user[name]"), "stevenn57@gmail.com")
-	res, err := db.Exec(statement)
+	statement := fmt.Sprintf("Insert into users(name, email) values('%v', '%v');", data.Get("user[name]"), data.Get("user[email]"))
+	_, err := db.Exec(statement)
 	if err != nil {
 		return user, err
 	}
-	newID, _ := res.LastInsertId()
-	log.Printf("Result of SQL execute is %v", newID)
 
-	return user, err
+	return user, nil
+}
+
+// DeleteUser deletes a user
+func DeleteUser(id uint64) {
+	db := system.GetDB()
+	statement := fmt.Sprintf("DELETE FROM users WHERE id = %v;", id)
+	_, err := db.Exec(statement)
+	if err != nil {
+		log.Println(err)
+	}
 }

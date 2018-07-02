@@ -6,6 +6,7 @@ import (
 	"super/controllers"
 	"super/system"
 
+	"github.com/gorilla/mux"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -15,9 +16,11 @@ func main() {
 	fs := http.FileServer(http.Dir("assets"))
 	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 
-	// Make a webpage
-	http.HandleFunc("/", controllers.HomeIndex)
-	http.HandleFunc("/users", controllers.UsersIndex)
+	r := mux.NewRouter()
+	r.HandleFunc("/", controllers.HomeIndex)
+	r.HandleFunc("/users", controllers.UsersIndex)
+	r.HandleFunc("/users/delete/{id:[0-9]+}", controllers.UsersDelete)
+	http.Handle("/", r)
 
 	log.Fatal(http.ListenAndServe(":8080", system.LogRequest(http.DefaultServeMux)))
 

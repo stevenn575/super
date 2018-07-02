@@ -29,7 +29,7 @@ func writeLog(line string) {
 	// Simulates delay because this is asyncronous
 	time.Sleep(2 * time.Second)
 
-	f, err := os.OpenFile("./logs/application.log", os.O_APPEND|os.O_WRONLY, 0600)
+	f, err := os.OpenFile("./logs/application.log", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
 	if err != nil {
 		panic(err)
 	}
