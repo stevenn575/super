@@ -3,3 +3,6 @@ build:
 
 test:
 	go test ./... -cover
+
+db:
+	sqlite3 data/sqlite.db

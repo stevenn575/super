@@ -2,3 +2,4 @@
 logs/application.log
 docs/plans.md
 super
+data/sqlite.db

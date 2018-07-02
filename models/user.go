@@ -1,15 +1,16 @@
 package models
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
+	"net/url"
 	"strings"
+	"super/system"
 )
 
 // User is a user of Super
 type User struct {
+	ID      uint
 	Name    string
 	Email   string
 	TeamIDs []uint `json:"team_ids"`
@@ -18,13 +19,23 @@ type User struct {
 
 // GetUsers returns all records
 func GetUsers() []User {
-	raw, err := ioutil.ReadFile("./data/users.json")
-	if err != nil {
-		fmt.Println(err.Error())
-		panic(err)
-	}
 	var users []User
-	json.Unmarshal(raw, &users)
+
+	db := system.GetDB()
+	rows, err := db.Query("Select * from users")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		user := User{}
+		err = rows.Scan(&user.ID, &user.Email, &user.Name)
+		if err != nil {
+			log.Fatal(err)
+		}
+		users = append(users, user)
+	}
 	return users
 }
 
@@ -60,4 +71,21 @@ func (u User) GetTeams() []Team {
 	}
 
 	return teams
+}
+
+// CreateUser will create a new user
+func CreateUser(data url.Values) (User, error) {
+	var user User
+
+	db := system.GetDB()
+
+	statement := fmt.Sprintf("Insert into users(name, email) values('%v', '%v')", data.Get("user[name]"), "stevenn57@gmail.com")
+	res, err := db.Exec(statement)
+	if err != nil {
+		return user, err
+	}
+	newID, _ := res.LastInsertId()
+	log.Printf("Result of SQL execute is %v", newID)
+
+	return user, err
 }

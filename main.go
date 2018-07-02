@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"super/controllers"
 	"super/system"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
