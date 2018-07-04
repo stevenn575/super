@@ -22,6 +22,6 @@ func main() {
 	r.HandleFunc("/users/delete/{id:[0-9]+}", controllers.UsersDelete)
 	http.Handle("/", r)
 
-	log.Fatal(http.ListenAndServe(":8080", system.LogRequest(http.DefaultServeMux)))
+	log.Fatal(http.ListenAndServe(":8081", system.LogRequest(http.DefaultServeMux)))
 
 }
